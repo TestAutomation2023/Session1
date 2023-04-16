@@ -1,9 +1,7 @@
 package org.example;
 
-
 import org.junit.Assert;
 import org.junit.Test;
-
 
 /**
  * Unit test for simple App.
@@ -58,13 +56,13 @@ public class AppTest
 
         //Assert
         Assert.assertFalse(actualTotal > inputNumber);
-
     }
+    
+    
    /*
      Bài 2: Hãy viết method nhận vào một số nguyên dương n. Hãy viết giải thuật tính n!. n!= n*(n-1)…*1;
      Viết test method cho method vừa viết.
      */
-
     public int multipleNumber(int number){
         if (number <= 2)
             return number;
@@ -74,7 +72,6 @@ public class AppTest
             result *= i;
 
         return result;
-
     }
 
     @Test
@@ -89,7 +86,6 @@ public class AppTest
 
         //Assert
         Assert.assertTrue(expectedValue==actualValue );
-
     }
 
     /*
@@ -125,7 +121,6 @@ public class AppTest
     Bài 4: Hãy viết method nhận vào 2 số nguyên, hãy viết giải thuật đưa ra ước chung lớn nhất của 2 số này.
            Viết test method cho method vừa viết.
      */
-
     public int findUSCLN(int number1, int number2){
         int result = 1;
 
@@ -146,7 +141,6 @@ public class AppTest
                 }
             }
         }
-
         return result;
     }
 
@@ -190,7 +184,6 @@ public class AppTest
             }
         }
         return result;
-
     }
 
     @Test
