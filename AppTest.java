@@ -1,7 +1,13 @@
 package org.example;
 
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * Unit test for simple App.
@@ -56,13 +62,13 @@ public class AppTest
 
         //Assert
         Assert.assertFalse(actualTotal > inputNumber);
+
     }
-    
-    
    /*
      Bài 2: Hãy viết method nhận vào một số nguyên dương n. Hãy viết giải thuật tính n!. n!= n*(n-1)…*1;
      Viết test method cho method vừa viết.
      */
+
     public int multipleNumber(int number){
         if (number <= 2)
             return number;
@@ -72,6 +78,7 @@ public class AppTest
             result *= i;
 
         return result;
+
     }
 
     @Test
@@ -86,6 +93,7 @@ public class AppTest
 
         //Assert
         Assert.assertTrue(expectedValue==actualValue );
+
     }
 
     /*
@@ -121,6 +129,7 @@ public class AppTest
     Bài 4: Hãy viết method nhận vào 2 số nguyên, hãy viết giải thuật đưa ra ước chung lớn nhất của 2 số này.
            Viết test method cho method vừa viết.
      */
+
     public int findUSCLN(int number1, int number2){
         int result = 1;
 
@@ -141,6 +150,7 @@ public class AppTest
                 }
             }
         }
+
         return result;
     }
 
@@ -184,6 +194,7 @@ public class AppTest
             }
         }
         return result;
+
     }
 
     @Test
@@ -247,6 +258,116 @@ public class AppTest
         System.out.println(list);
     }
 
+    /*
+    Bài 8: Áp dụng method viết ở bài 3.
+    Hãy viết giải thuật phân tích một số bất kỳ sang thừa số nguyên tố. Ví dụ: 20 = 5*4. Viết test method cho method vừa viết.
+     */
+
+    public List<Integer> analystToPrimer(int n){
+        List<Integer> arrSplits = new ArrayList<Integer>();
+        if (n <= 0 || isPrimeNumber(n))
+            arrSplits.add(n);
+        else
+        {
+            int i=2;
+            while (i<=n)
+            {
+                while (n%i==0)
+                {
+                    arrSplits.add(i);
+                    n /= i;
+                }
+                i = ((n % i) != 0) ? (i + 1) : i;
+            }
+        }
+        return arrSplits;
+
+    }
+
+    @Test
+    public void check_analystToPrimer(){
+
+        // Arrange
+        int n = 2070;
+        List<Integer> lstExpected = Arrays.asList(2,3,3,5,23);
+
+        //Action
+        List<Integer> lstActual = analystToPrimer(n);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+    }
+
+    /*
+    Bài 9: Viết method nhận vào một số nguyên n. Hãy in ra số Fibonaci ứng với nó.
+    Số fibonaci là số thoả mãn f(n) = fi(n-1) + fi(n-2).
+     */
+    public List<Integer> findFibonaci(int n)
+    {
+        List<Integer> arrNumber = new ArrayList<Integer>();
+        if (n <= 2)
+            arrNumber.add(n);
+        else
+        {
+            int i=1;
+            int j=2;
+            int tong = i+j;
+            arrNumber.add(i);
+            arrNumber.add(j);
+            while(tong <= n)
+            {
+                arrNumber.add(tong);
+                i = j;
+                j = tong;
+                tong = i+j;
+            }
+        }
+        return arrNumber;
+    }
+
+    @Test
+    public void check_findFibonaci()
+    {
+        //Arrange
+        int n = 13;
+        List<Integer> lstExpected = Arrays.asList(1,2,3,5,8,13);
+
+        //Action
+        List<Integer> lstActual = findFibonaci(n);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+
+    }
+    /*
+    Bài 10: Viết method nhận vào một mảng các số nguyên, hãy viết giải thuật đưa ra danh sách các số chẵn có trong mảng.
+    Viết test method cho method vừa viết.
+     */
+
+    public List<Integer> findEvenList(List<Integer> arrNumber)
+    {
+        List<Integer> arrSplits = new ArrayList<Integer>();
+        for(int i=0; i<arrNumber.size(); i++)
+                if (arrNumber.get(i) %2==0)
+                    arrSplits.add(arrNumber.get(i));
+        return arrSplits;
+    }
+
+    @Test
+    public void check_finEvenList()
+    {
+        //Arrange
+        List<Integer> lstInput = Arrays.asList(1,2,3,4,5,6,7,8,9,15);
+        List<Integer> lstExpected = Arrays.asList(2,4,6,8);
+        //Action
+        List<Integer> lstActual = findEvenList(lstInput);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+    }
 
 
 }
