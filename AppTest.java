@@ -369,5 +369,98 @@ public class AppTest
         Assert.assertEquals(lstExpected, lstActual);
     }
 
+    /*
+    Bài 11: Viết method nhận vào một mảng các số nguyên bất kỳ,
+    hãy sử dụng method viết ở bài 2, đưa ra danh sách các số nguyên tố có trong mảng.
+    Viết test method cho method vừa viết.
+     */
 
+    public List<Integer> findPrimerList(List<Integer> arrNumber)
+    {
+        List<Integer> lstPrimer = new ArrayList<Integer>();
+        for(int i=0; i<arrNumber.size(); i++)
+            if (isPrimeNumber(arrNumber.get(i)))
+                lstPrimer.add(arrNumber.get(i));
+        return lstPrimer;
+    }
+    @Test
+    public void check_findPrimerList()
+    {
+        //Arrange
+        int n = 100;
+        List<Integer> lstInput = new ArrayList<Integer>(n);
+        for(int i=0; i<n; i++)
+            lstInput.add(i);
+
+        List<Integer> lstExpected = Arrays.asList(2,3,5,7,9,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97);
+        //Action
+        List<Integer> lstActual = findPrimerList(lstInput);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+    }
+
+    /*
+    Bài 12: Viết method nhận vào một mảng các số nguyên, hãy viết giải thuật đảo ngược mảng đó,
+            viết test method cho method vừa viết.
+     */
+
+    public List<Integer> reverseList(List<Integer> arrNumber)
+    {
+        List<Integer> lstPrimer = new ArrayList<Integer>();
+        int n = arrNumber.size();
+        for(int i=n-1; i>=0; i--)
+            lstPrimer.add(arrNumber.get(i));
+        return lstPrimer;
+    }
+    @Test
+    public void check_reverseList()
+    {
+        //Arrange
+        int n = 10;
+        List<Integer> lstInput = new ArrayList<Integer>(n);
+        for(int i=0; i<n; i++)
+            lstInput.add(i);
+
+        List<Integer> lstExpected = new ArrayList<Integer>(n);
+            for(int i=n-1; i>=0; i--)
+                lstExpected.add(i);
+
+        //Action
+        List<Integer> lstActual = reverseList(lstInput);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+    }
+
+    /*
+        Bài 13: Viết method nhận vào một mảng các số nguyên và một số nguyên n.'
+        Hãy thực hiện lọc ra các số trong mảng này và có giá trị nhỏ hơn số nguyên n.
+     */
+
+    public List<Integer> findSmallNumber(List<Integer> arrNumber, int n)
+    {
+        List<Integer> lst = new ArrayList<Integer>();
+        for (int i=0; i< arrNumber.size(); i++)
+            if(arrNumber.get(i) < n)
+                lst.add(arrNumber.get(i));
+        return lst;
+    }
+    @Test
+    public void check_findSmallNumber()
+    {
+        //Arrange
+        int n = 10;
+        List<Integer> lstInput = Arrays.asList(9,11,5,7,21,30,4,6,10,8);
+        List<Integer> lstExpected = Arrays.asList(9,5,7,4,6,8);
+
+        //Action
+        List<Integer> lstActual = findSmallNumber(lstInput, n);
+
+        //Assert
+        System.out.println(lstActual);
+        Assert.assertEquals(lstExpected, lstActual);
+    }
 }
